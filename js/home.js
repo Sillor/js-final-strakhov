@@ -3,8 +3,8 @@ const searchBar = document.getElementById('search-bar');
 const searchBtn = document.getElementById('search-button');
 const spinner = document.querySelector('.spinner-border');
 
-const baseURL = `https://api.rawg.io/api/games?key=${environment.myKey}`
-// const baseURL = '../samplegames.json';
+// const baseURL = `https://api.rawg.io/api/games?key=${environment.myKey}`
+const baseURL = '../samplegames.json';
 
 function fetchGames(searchStr = '') {
     toggleSpinner();
@@ -26,12 +26,15 @@ function updateGames(gameList) {
 
 function addGameCard(gameData) {
     let gameCard = document.createElement('div');
-    gameCard.classList = 'card m-3 p-0 h-25';
+    gameCard.classList = 'card m-3 p-0 h-25 shadow-sm';
     gameCard.style.width = '18rem';
 
     let thumbnail = document.createElement('img');
     thumbnail.src = gameData['background_image'];
     thumbnail.classList = 'card-img-top';
+    thumbnail.style.minHeight = '161px';
+    thumbnail.style.maxHeight = '161px';
+    thumbnail.style.objectFit = 'cover';
     gameCard.appendChild(thumbnail);
 
     let cardBody = document.createElement('div');
