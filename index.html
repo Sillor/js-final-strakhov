@@ -30,51 +30,24 @@
     </nav>
 
     <main>
+        <!-- Search bar -->
         <div class="container-lg mt-2">
             <div class="input-group">
-                <input type="search" id="form1" class="form-control" placeholder="Search" />
-                <button type="button" class="input-group-text border-0 ps-3 pe-">
+                <input type="search" id="search-bar" class="form-control" placeholder="Search" />
+                <button type="button" class="input-group-text border-0 ps-3 pe-" id="search-button">
                     <i class="bi bi-search"></i>
                 </button>
             </div>
         </div>
 
+        <!-- Game List -->
         <div class="container-lg mt-4">
             <div class="row justify-content-center">
-                <div class="card m-3 p-0 h-25" style="width: 18rem;">
-                    <img src="https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg"
-                        class="card-img-top">
-                    <div class="card-body">
-                        <h3 class="card-title mb-3 fw-bolder">Life is Strange</h3>
-                        <div class="row justify-content-end pe-3">
-                            <a href="#" class="fs-6 fw-lighter w-auto btn btn-dark p-0 ps-2 pe-2">Add <i
-                                    class="bi bi-plus-lg"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card m-3 p-0 h-25" style="width: 18rem;">
-                    <img src="https://media.rawg.io/media/games/20a/20aa03a10cda45239fe22d035c0ebe64.jpg"
-                        class="card-img-top">
-                    <div class="card-body">
-                        <h3 class="card-title mb-3 fw-bolder">Grand Theft Auto V</h3>
-                        <div class="row justify-content-end pe-3">
-                            <a href="#" class="fs-6 fw-lighter w-auto btn btn-dark p-0 ps-2 pe-2">Add <i
-                                    class="bi bi-plus-lg"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card m-3 p-0 h-25" style="width: 18rem;">
-                    <img src="https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg"
-                        class="card-img-top">
-                    <div class="card-body">
-                        <h3 class="card-title mb-3 fw-bolder">The Witcher 3: Wild Hunt</h3>
-                        <div class="row justify-content-end pe-3">
-                            <a href="#" class="fs-6 fw-lighter w-auto btn btn-dark p-0 ps-2 pe-2">Add <i
-                                    class="bi bi-plus-lg"></i></a>
-                        </div>
-                    </div>
+                <div class="spinner-border d-none" role="status">
+                    <span class="visually-hidden">Loading...</span>
                 </div>
             </div>
+            <div class="row justify-content-center" id="game-list"></div>
         </div>
     </main>
 
