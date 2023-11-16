@@ -244,6 +244,10 @@ function showCatalog() {
 
 showCatalog();
 
+// small bug fix
+if (!JSON.parse(localStorage.getItem('myGames')))
+    JSON.stringify(localStorage.setItem('myGames', '[]'));
+
 const searchBtn = document.getElementById('search-button');
 
 // Event-listeners
