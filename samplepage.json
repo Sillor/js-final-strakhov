@@ -1,0 +1,600 @@
+{
+    "id": 3439,
+    "slug": "life-is-strange-episode-1-2",
+    "name": "Life is Strange",
+    "name_original": "Life is Strange",
+    "description": "<p>Interactive storytelling and plot-heavy games gained popularity, and “Life is Strange” arrived as teen mystery adventure. The plot will go through the life of Maxine, a teenager in possession of curious power, allowing her to stop and rewind time, in order to manipulate her surroundings. Max, after the reunion with her friend Chloe, is on the path to uncovering the secrets of Arcadia Bay. Players will have to deal with puzzle solving through the fetch quests, in order to change the world around them. <br />\nThe game puts players in situations, where they’re forced to make a moral choice, going through the decision which may have short-term or long-term consequences. Every choice made by the player will trigger the butterfly effect, surrounding the first playthrough of the game with a lot of emotional struggle, thoughtfully crafted by the developers at Dontnod Entertainment. Life is Strange is third person adventure game, where players might seem just as an observer of the stories, unfolding in front of them.</p>",
+    "metacritic": 83,
+    "metacritic_platforms": [],
+    "released": "2015-01-29",
+    "tba": false,
+    "updated": "2023-11-14T16:28:19",
+    "background_image": "https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg",
+    "background_image_additional": "https://media.rawg.io/media/screenshots/8e9/8e910792acf05dd5721f461744b04090.jpg",
+    "website": "https://www.lifeisstrange.com/en-us/games/life-is-strange",
+    "rating": 4.11,
+    "rating_top": 5,
+    "ratings": [
+        {
+            "id": 5,
+            "title": "exceptional",
+            "count": 1570,
+            "percent": 43.85
+        },
+        {
+            "id": 4,
+            "title": "recommended",
+            "count": 1302,
+            "percent": 36.37
+        },
+        {
+            "id": 3,
+            "title": "meh",
+            "count": 478,
+            "percent": 13.35
+        },
+        {
+            "id": 1,
+            "title": "skip",
+            "count": 230,
+            "percent": 6.42
+        }
+    ],
+    "reactions": {
+        "1": 17,
+        "2": 3,
+        "3": 5,
+        "4": 3,
+        "5": 2,
+        "7": 8,
+        "9": 1,
+        "10": 15,
+        "11": 5,
+        "12": 17,
+        "14": 2,
+        "15": 3,
+        "16": 4,
+        "21": 1
+    },
+    "added": 14519,
+    "added_by_status": {
+        "yet": 764,
+        "owned": 9339,
+        "beaten": 3306,
+        "toplay": 343,
+        "dropped": 623,
+        "playing": 144
+    },
+    "playtime": 6,
+    "screenshots_count": 125,
+    "movies_count": 0,
+    "creators_count": 12,
+    "achievements_count": 607,
+    "parent_achievements_count": 61,
+    "reddit_url": "https://www.reddit.com/r/lifeisstrange/",
+    "reddit_name": "",
+    "reddit_description": "",
+    "reddit_logo": "",
+    "reddit_count": 3924,
+    "twitch_count": 107,
+    "youtube_count": 1000000,
+    "reviews_text_count": 44,
+    "ratings_count": 3536,
+    "suggestions_count": 532,
+    "alternative_names": [
+        "LiS",
+        "Life is Strange Complete Season"
+    ],
+    "metacritic_url": "",
+    "parents_count": 0,
+    "additions_count": 6,
+    "game_series_count": 4,
+    "user_game": null,
+    "reviews_count": 3580,
+    "saturated_color": "0f0f0f",
+    "dominant_color": "0f0f0f",
+    "parent_platforms": [
+        {
+            "platform": {
+                "id": 1,
+                "name": "PC",
+                "slug": "pc"
+            }
+        },
+        {
+            "platform": {
+                "id": 2,
+                "name": "PlayStation",
+                "slug": "playstation"
+            }
+        },
+        {
+            "platform": {
+                "id": 3,
+                "name": "Xbox",
+                "slug": "xbox"
+            }
+        },
+        {
+            "platform": {
+                "id": 4,
+                "name": "iOS",
+                "slug": "ios"
+            }
+        },
+        {
+            "platform": {
+                "id": 8,
+                "name": "Android",
+                "slug": "android"
+            }
+        },
+        {
+            "platform": {
+                "id": 5,
+                "name": "Apple Macintosh",
+                "slug": "mac"
+            }
+        },
+        {
+            "platform": {
+                "id": 6,
+                "name": "Linux",
+                "slug": "linux"
+            }
+        }
+    ],
+    "platforms": [
+        {
+            "platform": {
+                "id": 4,
+                "name": "PC",
+                "slug": "pc",
+                "image": null,
+                "year_end": null,
+                "year_start": null,
+                "games_count": 521690,
+                "image_background": "https://media.rawg.io/media/games/736/73619bd336c894d6941d926bfd563946.jpg"
+            },
+            "released_at": "2015-01-29",
+            "requirements": {}
+        },
+        {
+            "platform": {
+                "id": 6,
+                "name": "Linux",
+                "slug": "linux",
+                "image": null,
+                "year_end": null,
+                "year_start": null,
+                "games_count": 76030,
+                "image_background": "https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg"
+            },
+            "released_at": "2015-01-29",
+            "requirements": {}
+        },
+        {
+            "platform": {
+                "id": 16,
+                "name": "PlayStation 3",
+                "slug": "playstation3",
+                "image": null,
+                "year_end": null,
+                "year_start": null,
+                "games_count": 3164,
+                "image_background": "https://media.rawg.io/media/games/20a/20aa03a10cda45239fe22d035c0ebe64.jpg"
+            },
+            "released_at": "2015-01-29",
+            "requirements": {}
+        },
+        {
+            "platform": {
+                "id": 5,
+                "name": "macOS",
+                "slug": "macos",
+                "image": null,
+                "year_end": null,
+                "year_start": null,
+                "games_count": 102855,
+                "image_background": "https://media.rawg.io/media/games/8d6/8d69eb6c32ed6acfd75f82d532144993.jpg"
+            },
+            "released_at": "2015-01-29",
+            "requirements": {}
+        },
+        {
+            "platform": {
+                "id": 3,
+                "name": "iOS",
+                "slug": "ios",
+                "image": null,
+                "year_end": null,
+                "year_start": null,
+                "games_count": 77134,
+                "image_background": "https://media.rawg.io/media/games/35b/35b47c4d85cd6e08f3e2ca43ea5ce7bb.jpg"
+            },
+            "released_at": "2015-01-29",
+            "requirements": {
+                "minimum": "iPhone 5s, iPad Air, iPad Air Cellular, iPad Mini Retina, iPad Mini Retina Cellular, iPhone 6, iPhone 6 Plus, iPad Air 2, iPad Air 2 Cellular, iPad Mini 3, iPad Mini 3 Cellular, iPod Touch Sixth Gen, iPhone 6s, iPhone 6s Plus, iPad Mini 4, iPad Mini 4 Cellular, iPad Pro, iPad Pro Cellular, iPad Pro 9.7, iPad Pro 9.7 Cellular, iPhone SE, iPhone 7, iPhone 7 Plus, iPad 6 1 1, iPad 6 1 2, iPad 7 1, iPad 7 2, iPad 7 3, iPad 7 4, iPhone 8, iPhone 8 Plus, iPhone X, iPad 7 5, iPad 7 6, iPhone X S, iPhone X S Max, iPhone X R, iPad 8 1 2, iPad 8 3 4, iPad 8 5 6, iPad 8 7 8, iPad Mini 5, iPad Mini 5 Cellular, iPad Air 3, iPad Air 3 Cellular, iPod Touch Seventh Gen"
+            }
+        },
+        {
+            "platform": {
+                "id": 14,
+                "name": "Xbox 360",
+                "slug": "xbox360",
+                "image": null,
+                "year_end": null,
+                "year_start": null,
+                "games_count": 2788,
+                "image_background": "https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg"
+            },
+            "released_at": "2015-01-29",
+            "requirements": {}
+        },
+        {
+            "platform": {
+                "id": 21,
+                "name": "Android",
+                "slug": "android",
+                "image": null,
+                "year_end": null,
+                "year_start": null,
+                "games_count": 52298,
+                "image_background": "https://media.rawg.io/media/games/35b/35b47c4d85cd6e08f3e2ca43ea5ce7bb.jpg"
+            },
+            "released_at": "2015-01-29",
+            "requirements": {
+                "minimum": "6.0 and up"
+            }
+        },
+        {
+            "platform": {
+                "id": 18,
+                "name": "PlayStation 4",
+                "slug": "playstation4",
+                "image": null,
+                "year_end": null,
+                "year_start": null,
+                "games_count": 6735,
+                "image_background": "https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg"
+            },
+            "released_at": "2015-01-29",
+            "requirements": {}
+        },
+        {
+            "platform": {
+                "id": 1,
+                "name": "Xbox One",
+                "slug": "xbox-one",
+                "image": null,
+                "year_end": null,
+                "year_start": null,
+                "games_count": 5563,
+                "image_background": "https://media.rawg.io/media/games/9fa/9fa63622543e5d4f6d99aa9d73b043de.jpg"
+            },
+            "released_at": "2015-01-29",
+            "requirements": {}
+        }
+    ],
+    "stores": [
+        {
+            "id": 451321,
+            "url": "",
+            "store": {
+                "id": 5,
+                "name": "GOG",
+                "slug": "gog",
+                "domain": "gog.com",
+                "games_count": 5608,
+                "image_background": "https://media.rawg.io/media/games/5c0/5c0dd63002cb23f804aab327d40ef119.jpg"
+            }
+        },
+        {
+            "id": 3702,
+            "url": "",
+            "store": {
+                "id": 3,
+                "name": "PlayStation Store",
+                "slug": "playstation-store",
+                "domain": "store.playstation.com",
+                "games_count": 7858,
+                "image_background": "https://media.rawg.io/media/games/4a0/4a0a1316102366260e6f38fd2a9cfdce.jpg"
+            }
+        },
+        {
+            "id": 35603,
+            "url": "",
+            "store": {
+                "id": 1,
+                "name": "Steam",
+                "slug": "steam",
+                "domain": "store.steampowered.com",
+                "games_count": 85029,
+                "image_background": "https://media.rawg.io/media/games/b8c/b8c243eaa0fbac8115e0cdccac3f91dc.jpg"
+            }
+        },
+        {
+            "id": 35602,
+            "url": "",
+            "store": {
+                "id": 2,
+                "name": "Xbox Store",
+                "slug": "xbox-store",
+                "domain": "microsoft.com",
+                "games_count": 4773,
+                "image_background": "https://media.rawg.io/media/games/157/15742f2f67eacff546738e1ab5c19d20.jpg"
+            }
+        },
+        {
+            "id": 217695,
+            "url": "",
+            "store": {
+                "id": 8,
+                "name": "Google Play",
+                "slug": "google-play",
+                "domain": "play.google.com",
+                "games_count": 17067,
+                "image_background": "https://media.rawg.io/media/games/b6b/b6b20bfc4b34e312dbc8aac53c95a348.jpg"
+            }
+        },
+        {
+            "id": 245823,
+            "url": "",
+            "store": {
+                "id": 7,
+                "name": "Xbox 360 Store",
+                "slug": "xbox360",
+                "domain": "marketplace.xbox.com",
+                "games_count": 1912,
+                "image_background": "https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg"
+            }
+        },
+        {
+            "id": 44714,
+            "url": "",
+            "store": {
+                "id": 4,
+                "name": "App Store",
+                "slug": "apple-appstore",
+                "domain": "apps.apple.com",
+                "games_count": 75352,
+                "image_background": "https://media.rawg.io/media/games/baf/baf9905270314e07e6850cffdb51df41.jpg"
+            }
+        }
+    ],
+    "developers": [
+        {
+            "id": 9264,
+            "name": "DONTNOD Entertainment",
+            "slug": "dontnod-entertainment",
+            "games_count": 23,
+            "image_background": "https://media.rawg.io/media/screenshots/2a9/2a9012d2bad92ccdc64f1f2c73f60c41.jpg"
+        }
+    ],
+    "genres": [
+        {
+            "id": 3,
+            "name": "Adventure",
+            "slug": "adventure",
+            "games_count": 136287,
+            "image_background": "https://media.rawg.io/media/games/48c/48cb04ca483be865e3a83119c94e6097.jpg"
+        }
+    ],
+    "tags": [
+        {
+            "id": 31,
+            "name": "Singleplayer",
+            "slug": "singleplayer",
+            "language": "eng",
+            "games_count": 214418,
+            "image_background": "https://media.rawg.io/media/games/bc0/bc06a29ceac58652b684deefe7d56099.jpg"
+        },
+        {
+            "id": 40836,
+            "name": "Full controller support",
+            "slug": "full-controller-support",
+            "language": "eng",
+            "games_count": 16042,
+            "image_background": "https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg"
+        },
+        {
+            "id": 13,
+            "name": "Atmospheric",
+            "slug": "atmospheric",
+            "language": "eng",
+            "games_count": 31218,
+            "image_background": "https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg"
+        },
+        {
+            "id": 7808,
+            "name": "steam-trading-cards",
+            "slug": "steam-trading-cards",
+            "language": "eng",
+            "games_count": 7569,
+            "image_background": "https://media.rawg.io/media/games/49c/49c3dfa4ce2f6f140cc4825868e858cb.jpg"
+        },
+        {
+            "id": 42,
+            "name": "Great Soundtrack",
+            "slug": "great-soundtrack",
+            "language": "eng",
+            "games_count": 3375,
+            "image_background": "https://media.rawg.io/media/games/7cf/7cfc9220b401b7a300e409e539c9afd5.jpg"
+        },
+        {
+            "id": 118,
+            "name": "Story Rich",
+            "slug": "story-rich",
+            "language": "eng",
+            "games_count": 19820,
+            "image_background": "https://media.rawg.io/media/games/2ba/2bac0e87cf45e5b508f227d281c9252a.jpg"
+        },
+        {
+            "id": 149,
+            "name": "Third Person",
+            "slug": "third-person",
+            "language": "eng",
+            "games_count": 10393,
+            "image_background": "https://media.rawg.io/media/games/d1a/d1a2e99ade53494c6330a0ed945fe823.jpg"
+        },
+        {
+            "id": 189,
+            "name": "Female Protagonist",
+            "slug": "female-protagonist",
+            "language": "eng",
+            "games_count": 11423,
+            "image_background": "https://media.rawg.io/media/games/5a4/5a44112251d70a25291cc33757220fce.jpg"
+        },
+        {
+            "id": 41,
+            "name": "Dark",
+            "slug": "dark",
+            "language": "eng",
+            "games_count": 14843,
+            "image_background": "https://media.rawg.io/media/games/be0/be084b850302abe81675bc4ffc08a0d0.jpg"
+        },
+        {
+            "id": 141,
+            "name": "Point & Click",
+            "slug": "point-click",
+            "language": "eng",
+            "games_count": 12303,
+            "image_background": "https://media.rawg.io/media/games/40a/40ab95c1639aa1d7ec04d4cd523af6b1.jpg"
+        },
+        {
+            "id": 111,
+            "name": "Short",
+            "slug": "short",
+            "language": "eng",
+            "games_count": 57625,
+            "image_background": "https://media.rawg.io/media/games/d1f/d1f872a48286b6b751670817d5c1e1be.jpg"
+        },
+        {
+            "id": 117,
+            "name": "Mystery",
+            "slug": "mystery",
+            "language": "eng",
+            "games_count": 12628,
+            "image_background": "https://media.rawg.io/media/games/9e5/9e5b91a6d02e66b8d450a977a59ae123.jpg"
+        },
+        {
+            "id": 145,
+            "name": "Choices Matter",
+            "slug": "choices-matter",
+            "language": "eng",
+            "games_count": 4394,
+            "image_background": "https://media.rawg.io/media/games/2e1/2e187b31e5cee21c110bd16798d75fab.jpg"
+        },
+        {
+            "id": 120,
+            "name": "Memes",
+            "slug": "memes",
+            "language": "eng",
+            "games_count": 1689,
+            "image_background": "https://media.rawg.io/media/games/c4b/c4b0cab189e73432de3a250d8cf1c84e.jpg"
+        },
+        {
+            "id": 91,
+            "name": "Walking Simulator",
+            "slug": "walking-simulator",
+            "language": "eng",
+            "games_count": 6640,
+            "image_background": "https://media.rawg.io/media/games/9dd/9ddabb34840ea9227556670606cf8ea3.jpg"
+        },
+        {
+            "id": 218,
+            "name": "Multiple Endings",
+            "slug": "multiple-endings",
+            "language": "eng",
+            "games_count": 7847,
+            "image_background": "https://media.rawg.io/media/games/0af/0af85e8edddfa55368e47c539914a220.jpg"
+        },
+        {
+            "id": 406,
+            "name": "Story",
+            "slug": "story",
+            "language": "eng",
+            "games_count": 11301,
+            "image_background": "https://media.rawg.io/media/games/4fe/4feffcec6315c5f5a96442a8444431ca.jpg"
+        },
+        {
+            "id": 232,
+            "name": "Episodic",
+            "slug": "episodic",
+            "language": "eng",
+            "games_count": 447,
+            "image_background": "https://media.rawg.io/media/games/471/4712c9ac591f556f553556b864a7e92b.jpg"
+        },
+        {
+            "id": 295,
+            "name": "Soundtrack",
+            "slug": "soundtrack",
+            "language": "eng",
+            "games_count": 2902,
+            "image_background": "https://media.rawg.io/media/screenshots/0cf/0cfe4ec4dcffb8fcac999d7176c69176.jpg"
+        },
+        {
+            "id": 317,
+            "name": "Time Travel",
+            "slug": "time-travel",
+            "language": "eng",
+            "games_count": 1734,
+            "image_background": "https://media.rawg.io/media/screenshots/59e/59e1eafe1c11e8bc5b727e0c69c0261f.jpg"
+        },
+        {
+            "id": 302,
+            "name": "Time Manipulation",
+            "slug": "time-manipulation",
+            "language": "eng",
+            "games_count": 459,
+            "image_background": "https://media.rawg.io/media/games/59d/59d539fc7d8086ed9ea4f077c0196367.jpg"
+        },
+        {
+            "id": 992,
+            "name": "student",
+            "slug": "student",
+            "language": "eng",
+            "games_count": 1519,
+            "image_background": "https://media.rawg.io/media/screenshots/04f/04f147a13d2c62f11183dd831a9daf5e_LLtHcj6.jpg"
+        },
+        {
+            "id": 2682,
+            "name": "strange",
+            "slug": "strange",
+            "language": "eng",
+            "games_count": 360,
+            "image_background": "https://media.rawg.io/media/screenshots/1d4/1d42ee97681050baedab12c082bb8b54.jpg"
+        },
+        {
+            "id": 3197,
+            "name": "photography",
+            "slug": "photography",
+            "language": "eng",
+            "games_count": 203,
+            "image_background": "https://media.rawg.io/media/screenshots/c22/c22e3dfc119300f50b7fd0748eb9b41c.jpg"
+        }
+    ],
+    "publishers": [
+        {
+            "id": 308,
+            "name": "Square Enix",
+            "slug": "square-enix",
+            "games_count": 588,
+            "image_background": "https://media.rawg.io/media/games/410/41033a495ce8f7fd4b0934bdb975f12a.jpg"
+        },
+        {
+            "id": 19651,
+            "name": "Feral Interactive",
+            "slug": "feral-interactive",
+            "games_count": 109,
+            "image_background": "https://media.rawg.io/media/games/214/2140885d34e3a3398b45036e5d870971.jpg"
+        }
+    ],
+    "esrb_rating": {
+        "id": 4,
+        "name": "Mature",
+        "slug": "mature"
+    },
+    "clip": null,
+    "description_raw": "Interactive storytelling and plot-heavy games gained popularity, and “Life is Strange” arrived as teen mystery adventure. The plot will go through the life of Maxine, a teenager in possession of curious power, allowing her to stop and rewind time, in order to manipulate her surroundings. Max, after the reunion with her friend Chloe, is on the path to uncovering the secrets of Arcadia Bay. Players will have to deal with puzzle solving through the fetch quests, in order to change the world around them. \nThe game puts players in situations, where they’re forced to make a moral choice, going through the decision which may have short-term or long-term consequences. Every choice made by the player will trigger the butterfly effect, surrounding the first playthrough of the game with a lot of emotional struggle, thoughtfully crafted by the developers at Dontnod Entertainment. Life is Strange is third person adventure game, where players might seem just as an observer of the stories, unfolding in front of them."
+}

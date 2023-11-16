@@ -217,8 +217,12 @@ function showCollection() {
 
         // updates the page with info from localStorage
         const searchContainer = document.querySelector('.search-container');
+        const gamePageContainer = document.getElementById('game-page');
+
         if (searchContainer != null)
             searchContainer.remove();
+        if (gamePageContainer != null)
+            gamePageContainer.remove();
 
         cardList.innerHTML = '';
         myData.forEach(game => {
@@ -231,15 +235,112 @@ function showCollection() {
     }
 }
 
+// transform the page to catalog
 function showCatalog() {
     if (currentPage != 'catalog') {
         const searchContainer = document.querySelector('.search-container');
+        const gamePageContainer = document.getElementById('game-page');
+
         if (searchContainer != null)
             searchContainer.remove();
+        if (gamePageContainer != null)
+            gamePageContainer.remove();
+
         fetchGames();
         addSearch();
         currentPage = 'catalog';
     }
+}
+
+// returns formatted platforms for a given game data
+function getPlatforms(gameData) {
+    let str = gameData['platforms'][0]['platform']['name'];
+    for (let i = 1; i < gameData['platforms'].length; i++)
+        str += ', ' + gameData['platforms'][i]['platform']['name'];
+    return str;
+}
+
+// transform the page to a game page
+function showGamePage(e) {
+    if (e.target.classList.contains('card-img-top')) {
+        const searchContainer = document.querySelector('.search-container');
+
+        const gameName = e.target.nextElementSibling.querySelector('h3').textContent;
+        let gameID;
+
+        // looks up for id depending on page
+        if (currentPage === 'catalog') {
+            for (let i = 0; i < currentData.length; i++)
+                if (currentData[i]['name'] === gameName)
+                    gameID = currentData[i]['id'];
+        }
+        if (currentPage === 'collection') {
+            const myData = JSON.parse(localStorage.getItem('myGames'));
+            for (let i = 0; i < myData.length; i++)
+                if (myData[i]['name'] === gameName)
+                    gameID = myData[i]['id'];
+        }
+
+        // clears page
+        if (searchContainer != null)
+            searchContainer.remove();
+        cardList.innerHTML = '';
+
+        // fetches API for specific game id
+        // fetch(`https://api.rawg.io/api/games/${gameID}?key=${environment.myKey}`)
+        //     .then(res => res.json())
+        //     .then(data => loadGamePage(data));
+        fetch('./samplepage.json')
+            .then(res => res.json())
+            .then(data => loadGamePage(data));
+
+        currentPage = 'gamepage';
+    }
+}
+
+function loadGamePage(gameData) {
+    const gamePageContainer = document.createElement('div');
+    gamePageContainer.classList = 'container-lg mt-4 p-3';
+    gamePageContainer.id = 'game-page';
+    gamePageContainer.innerHTML =
+        `<div class="row">
+        <div class="col-12 col-md-5">
+            <img class="img-thumbnail"
+                src="${gameData['background_image']}">
+            <div class="ratings row justify-content-around mt-2">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-outline-success">Completed</button>
+                    <button type="button" class="btn btn-outline-warning">Playing</button>
+                    <button type="button" class="btn btn-outline-primary">Wishlisted</button>
+                </div>
+                <div class="btn-group mt-2">
+                    <button type="button" class="btn btn-outline-success">
+                        <i class="bi bi-hand-thumbs-up"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-danger">
+                        <i class="bi bi-hand-thumbs-down"></i>
+                    </button>
+                </div>
+                <p class="fs-5 mt-3 m-1"><span class="fw-bold">Developers:</span> ${gameData['developers'][0]['name']}</p>
+                <p class="fs-5 m-1"><span class="fw-bold">Metacritic:</span> ${gameData['metacritic']}</p>
+                <p class="fs-5 m-1"><span class="fw-bold">Platforms:</span> ${getPlatforms(gameData)}</p>
+
+            </div>
+        </div>
+        <div class="col-7 d-none d-md-block">
+            <h1>${gameData['name']}</h1>
+            <h5>Released: ${gameData['released']}</h5>
+            ${gameData['description']}
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12 wrap d-block d-md-none text-center">
+            <h1>${gameData['name']}</h1>
+            <h5>Released: ${gameData['released']}</h5>
+            ${gameData['description']}
+        </div>
+    </div>`;
+    document.querySelector('main').insertBefore(gamePageContainer, document.getElementById('game-container'));
 }
 
 showCatalog();
@@ -251,8 +352,9 @@ if (!JSON.parse(localStorage.getItem('myGames')))
 const searchBtn = document.getElementById('search-button');
 
 // Event-listeners
-searchBtn.addEventListener('click', searchGames);
+// searchBtn.addEventListener('click', searchGames);
 cardList.addEventListener('click', addGame);
 cardList.addEventListener('click', removeGame);
+cardList.addEventListener('click', showGamePage);
 colLink.addEventListener('click', showCollection);
 catLink.addEventListener('click', showCatalog);
