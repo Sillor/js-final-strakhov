@@ -2,6 +2,7 @@ const cardList = document.getElementById('game-list');
 const spinner = document.querySelector('.spinner-border');
 const colLink = document.getElementById('collection-link');
 const catLink = document.getElementById('catalog-link');
+const logo = document.querySelector('.navbar-brand');
 
 // currently displayed games array
 let currentData = [];
@@ -197,7 +198,7 @@ function addSearch(type) {
         dropdown.appendChild(dropdownMenu);
         dropdownMenu.appendChild(addListItem('All'));
         dropdownMenu.appendChild(addListItem('Completed'));
-        dropdownMenu.appendChild(addListItem('In progress'));
+        dropdownMenu.appendChild(addListItem('Playing'));
         dropdownMenu.appendChild(addListItem('Wishlisted'));
     }
 
@@ -310,26 +311,80 @@ function isInCollection(gameID, myGames) {
     return inCollection;
 }
 
+function addCategory(e) {
+    let myData = JSON.parse(localStorage.getItem('myGames'));
+    let title = document.querySelector('.title').textContent;
+
+    for (let i = 0; i < myData.length; i++)
+        if (myData[i]['name'] === title) {
+            myData[i]['category'] = e.target.textContent.toLowerCase();
+            localStorage.setItem('myGames', JSON.stringify(myData));
+        }
+    updateGameRating();
+}
+
+function addRating(e) {
+    let myData = JSON.parse(localStorage.getItem('myGames'));
+    let title = document.querySelector('.title').textContent;
+
+    for (let i = 0; i < myData.length; i++)
+        if (myData[i]['name'] === title) {
+            myData[i]['userRated'] = e.target.innerText.toLowerCase().trim();
+            localStorage.setItem('myGames', JSON.stringify(myData));
+        }
+    updateGameRating();
+}
+
+function updateGameRating() {
+    const category = document.querySelectorAll('.category button');
+    const rating = document.querySelectorAll('.rating button');
+    const myData = JSON.parse(localStorage.getItem('myGames'));
+    let title = document.querySelector('.title').textContent;
+    let currGame = '';
+
+    for (let i = 0; i < myData.length; i++)
+        if (myData[i]['name'] === title)
+            currGame = myData[i];
+
+    category.forEach(btn => {
+        if (btn.innerText.trim().toLowerCase() === currGame['category'])
+            btn.classList = 'btn btn-secondary';
+        else if (btn.innerText.trim() === 'Completed')
+            btn.classList = 'btn btn-outline-success';
+        else if (btn.innerText.trim() === 'Playing')
+            btn.classList = 'btn btn-outline-warning';
+        else if (btn.innerText.trim() === 'Wishlisted')
+            btn.classList = 'btn btn-outline-primary';
+    });
+
+    console.log(currGame['userRated']);
+    rating.forEach(btn => {
+        if (btn.innerText.trim().toLowerCase() === currGame['userRated'])
+            btn.classList = 'btn btn-secondary';
+        else if (btn.innerText.trim() === 'Like')
+            btn.classList = 'btn btn-outline-success';
+        else if (btn.innerText.trim() === 'Dislike')
+            btn.classList = 'btn btn-outline-danger';
+    });
+}
+
 function loadGamePage(gameData) {
     const gamePageContainer = document.createElement('div');
     gamePageContainer.classList = 'container-lg mt-4 p-3';
     gamePageContainer.id = 'game-page';
     let ratingPart;
-    let inCollection;
-    console.log(isInCollection(gameData['id'], JSON.parse(localStorage.getItem('myGames'))));
-    if (isInCollection(gameData['id'], JSON.parse(localStorage.getItem('myGames')))) {
+    let inCollection = isInCollection(gameData['id'], JSON.parse(localStorage.getItem('myGames')));
+    if (inCollection) {
         ratingPart =
-            `<div class="btn-group">
+            `<div class="btn-group category">
                 <button type="button" class="btn btn-outline-success">Completed</button>
                 <button type="button" class="btn btn-outline-warning">Playing</button>
                 <button type="button" class="btn btn-outline-primary">Wishlisted</button>
             </div>
-            <div class="btn-group mt-2">
-                <button type="button" class="btn btn-outline-success">
-                    <i class="bi bi-hand-thumbs-up"></i>
+            <div class="btn-group rating mt-2">
+                <button type="button" class="btn btn-outline-success">Like <i class="bi bi-hand-thumbs-up"></i>
                 </button>
-                <button type="button" class="btn btn-outline-danger">
-                    <i class="bi bi-hand-thumbs-down"></i>
+                <button type="button" class="btn btn-outline-danger">Dislike <i class="bi bi-hand-thumbs-down"></i>
                 </button>
             </div>`;
         inCollection = true;
@@ -356,14 +411,14 @@ function loadGamePage(gameData) {
             </div>
         </div>
         <div class="col-7 d-none d-md-block">
-            <h1>${gameData['name']}</h1>
+            <h1 class="title">${gameData['name']}</h1>
             <h5>Released: ${gameData['released']}</h5>
             ${gameData['description']}
         </div>
     </div>
     <div class="row mt-4">
         <div class="col-12 wrap d-block d-md-none text-center">
-            <h1>${gameData['name']}</h1>
+            <h1 class="title">${gameData['name']}</h1>
             <h5>Released: ${gameData['released']}</h5>
             ${gameData['description']}
         </div>
@@ -371,9 +426,18 @@ function loadGamePage(gameData) {
 
     document.querySelector('main').insertBefore(gamePageContainer, document.getElementById('game-container'));
 
-    const addBtn = document.querySelector('.addBtn');
-    console.log(addBtn);
-    addBtn.addEventListener('click', () => appendToLocal(gameData));
+    updateGameRating();
+
+    if (inCollection) {
+        const category = document.querySelector('.category');
+        const rating = document.querySelector('.rating');
+
+        category.addEventListener('click', addCategory);
+        rating.addEventListener('click', addRating);
+    } else {
+        const addBtn = document.querySelector('.addBtn');
+        addBtn.addEventListener('click', () => appendToLocal(gameData));
+    }
 }
 
 showCatalog();
@@ -391,3 +455,4 @@ cardList.addEventListener('click', removeGame);
 cardList.addEventListener('click', showGamePage);
 colLink.addEventListener('click', showCollection);
 catLink.addEventListener('click', showCatalog);
+logo.addEventListener('click', showCatalog);
