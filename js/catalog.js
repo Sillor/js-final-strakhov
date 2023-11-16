@@ -101,22 +101,26 @@ function addGame(e) {
         // finds the game in cached data
         for (let i = 0; i < currentData.length; i++) {
             if (currentData[i]['name'] === gameName) {
-                // updates the localstorage with the new game
-                if (localStorage.getItem('myGames')) {
-                    let myGames = JSON.parse(localStorage.getItem('myGames'));
-                    if (!checkAddDuplicate(myGames, currentData[i])) {
-                        myGames.push(currentData[i]);
-                        localStorage.setItem('myGames', JSON.stringify(myGames));
-                    } else {
-                        alert('The game is already in your collection!');
-                    }
-                } else {
-                    let myGames = [];
-                    myGames.push(currentData[i]);
-                    localStorage.setItem('myGames', JSON.stringify(myGames));
-                }
+                appendToLocal(currentData[i]);
             }
         }
+    }
+}
+
+// appends the localstorage with the new game
+function appendToLocal(gameData) {
+    if (localStorage.getItem('myGames')) {
+        let myGames = JSON.parse(localStorage.getItem('myGames'));
+        if (!checkAddDuplicate(myGames, gameData)) {
+            myGames.push(gameData);
+            localStorage.setItem('myGames', JSON.stringify(myGames));
+        } else {
+            alert('The game is already in your collection!');
+        }
+    } else {
+        let myGames = [];
+        myGames.push(gameData[i]);
+        localStorage.setItem('myGames', JSON.stringify(myGames));
     }
 }
 
@@ -298,29 +302,53 @@ function showGamePage(e) {
     }
 }
 
+function isInCollection(gameID, myGames) {
+    let inCollection = false;
+    for (let i = 0; i < myGames.length; i++)
+        if (myGames[i]['id'] === gameID)
+            inCollection = true;
+    return inCollection;
+}
+
 function loadGamePage(gameData) {
     const gamePageContainer = document.createElement('div');
     gamePageContainer.classList = 'container-lg mt-4 p-3';
     gamePageContainer.id = 'game-page';
+    let ratingPart;
+    let inCollection;
+    console.log(isInCollection(gameData['id'], JSON.parse(localStorage.getItem('myGames'))));
+    if (isInCollection(gameData['id'], JSON.parse(localStorage.getItem('myGames')))) {
+        ratingPart =
+            `<div class="btn-group">
+                <button type="button" class="btn btn-outline-success">Completed</button>
+                <button type="button" class="btn btn-outline-warning">Playing</button>
+                <button type="button" class="btn btn-outline-primary">Wishlisted</button>
+            </div>
+            <div class="btn-group mt-2">
+                <button type="button" class="btn btn-outline-success">
+                    <i class="bi bi-hand-thumbs-up"></i>
+                </button>
+                <button type="button" class="btn btn-outline-danger">
+                    <i class="bi bi-hand-thumbs-down"></i>
+                </button>
+            </div>`;
+        inCollection = true;
+    } else {
+        ratingPart =
+            `<a class="fs-6 fw-bolder btn btn-outline-success border-2 p-0 ps-2 pe-2 addBtn">
+                Add to Collection
+                <i class="bi bi-plus-lg"></i>
+            </a>`;
+        inCollection = false;
+    }
+
     gamePageContainer.innerHTML =
         `<div class="row">
         <div class="col-12 col-md-5">
             <img class="img-thumbnail"
                 src="${gameData['background_image']}">
             <div class="ratings row justify-content-around mt-2">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-outline-success">Completed</button>
-                    <button type="button" class="btn btn-outline-warning">Playing</button>
-                    <button type="button" class="btn btn-outline-primary">Wishlisted</button>
-                </div>
-                <div class="btn-group mt-2">
-                    <button type="button" class="btn btn-outline-success">
-                        <i class="bi bi-hand-thumbs-up"></i>
-                    </button>
-                    <button type="button" class="btn btn-outline-danger">
-                        <i class="bi bi-hand-thumbs-down"></i>
-                    </button>
-                </div>
+                ${ratingPart}
                 <p class="fs-5 mt-3 m-1"><span class="fw-bold">Developers:</span> ${gameData['developers'][0]['name']}</p>
                 <p class="fs-5 m-1"><span class="fw-bold">Metacritic:</span> ${gameData['metacritic']}</p>
                 <p class="fs-5 m-1"><span class="fw-bold">Platforms:</span> ${getPlatforms(gameData)}</p>
@@ -340,7 +368,12 @@ function loadGamePage(gameData) {
             ${gameData['description']}
         </div>
     </div>`;
+
     document.querySelector('main').insertBefore(gamePageContainer, document.getElementById('game-container'));
+
+    const addBtn = document.querySelector('.addBtn');
+    console.log(addBtn);
+    addBtn.addEventListener('click', () => appendToLocal(gameData));
 }
 
 showCatalog();
