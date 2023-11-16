@@ -14,14 +14,14 @@ let currentPage = '';
 // sends a request to the server with or without search value
 function fetchGames(searchStr = '') {
     toggleSpinner();
-    // if (searchStr !== '')
-    //     fetch(`${baseURL}&search=${encodeURIComponent(searchStr)}`)
-    //         .then(res => res.json())
-    //         .then(data => updateGames(data['results']));
-    // else
-    fetch(baseURL)
-        .then(res => res.json())
-        .then(data => updateGames(data['results']));
+    if (searchStr !== '')
+        fetch(`${baseURL}&search=${encodeURIComponent(searchStr)}`)
+            .then(res => res.json())
+            .then(data => updateGames(data['results']));
+    else
+        fetch(baseURL)
+            .then(res => res.json())
+            .then(data => updateGames(data['results']));
 }
 
 // reloads all the games with the new data
