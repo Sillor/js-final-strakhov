@@ -4,14 +4,16 @@ const colLink = document.getElementById('collection-link');
 const catLink = document.getElementById('catalog-link');
 const logo = document.querySelector('.navbar-brand');
 
+const userToken = '';
+
 let filterCategory = '';
 let filterSearch = '';
 
 // currently displayed games array
 let currentData = [];
 
-// const baseURL = `https://api.rawg.io/api/games?key=${environment.myKey}`
-const baseURL = '../samplegames.json';
+const baseURL = `https://api.rawg.io/api/games?key=${sessionStorage.getItem('userToken')}`
+// const baseURL = '../samplegames.json';
 
 let currentPage = '';
 
@@ -265,14 +267,7 @@ function showCollection() {
     if (currentPage != 'collection') {
         let myData = JSON.parse(localStorage.getItem('myGames'));
 
-        // updates the page with info from localStorage
-        const searchContainer = document.querySelector('.search-container');
-        const gamePageContainer = document.getElementById('game-page');
-
-        if (searchContainer != null)
-            searchContainer.remove();
-        if (gamePageContainer != null)
-            gamePageContainer.remove();
+        clearPage();
 
         cardList.innerHTML = '';
         myData.forEach(game => {
@@ -288,13 +283,7 @@ function showCollection() {
 // transform the page to catalog
 function showCatalog() {
     if (currentPage != 'catalog') {
-        const searchContainer = document.querySelector('.search-container');
-        const gamePageContainer = document.getElementById('game-page');
-
-        if (searchContainer != null)
-            searchContainer.remove();
-        if (gamePageContainer != null)
-            gamePageContainer.remove();
+        clearPage();
 
         fetchGames();
         addSearch();
@@ -508,7 +497,80 @@ function loadGamePage(gameData) {
     }
 }
 
-showCatalog();
+function askForToken() {
+    showCollection();
+    cardList.innerHTML = '';
+
+    const searchContainer = document.querySelector('.search-container');
+    const gamePageContainer = document.getElementById('game-page');
+    if (searchContainer != null)
+        searchContainer.remove();
+    if (gamePageContainer != null)
+        gamePageContainer.remove();
+
+    const tokenContainer = document.createElement('div');
+    tokenContainer.classList = 'container-lg mt-4 token-container';
+
+    const tokenHeading = document.createElement('h4');
+    tokenHeading.textContent = 'Please enter your token:';
+    tokenContainer.appendChild(tokenHeading);
+
+    const inputGroup = document.createElement('div');
+    inputGroup.classList = 'input-group';
+    tokenContainer.appendChild(inputGroup);
+
+    const tokenBar = document.createElement('input');
+    tokenBar.id = 'token-bar';
+    tokenBar.classList = 'form-control border-secondary mt-1';
+    tokenBar.placeholder = 'Token';
+    inputGroup.appendChild(tokenBar);
+
+    const submitBtn = document.createElement('button');
+    submitBtn.type = 'button';
+    submitBtn.classList = 'btn btn-dark input-group-text border-1 ps-3 pe-3 mt-1';
+    submitBtn.id = 'search-button';
+    submitBtn.textContent = 'Submit';
+    inputGroup.appendChild(submitBtn);
+
+    document.querySelector('main').insertBefore(tokenContainer, document.getElementById('game-container'));
+    submitBtn.addEventListener('click', submitToken);
+}
+
+function toggleUI() {
+    const navbar = document.querySelector('nav');
+    const footer = document.querySelector('footer');
+
+    navbar.classList.toggle('d-none');
+    footer.classList.toggle('d-none');
+}
+
+function submitToken(e) {
+    const tokenBar = document.getElementById('token-bar');
+    sessionStorage.setItem('userToken', tokenBar.value);
+    toggleUI();
+    showCatalog();
+}
+
+function clearPage() {
+    const tokenContainer = document.querySelector('.token-container');
+    const searchContainer = document.querySelector('.search-container');
+    const gamePageContainer = document.getElementById('game-page');
+
+    if (searchContainer != null)
+        searchContainer.remove();
+    if (gamePageContainer != null)
+        gamePageContainer.remove();
+    if (tokenContainer != null)
+        tokenContainer.remove();
+}
+
+if (JSON.parse(sessionStorage.getItem('userToken') === null || JSON.parse(sessionStorage.getItem('userToken') === ''))) {
+    toggleUI();
+    askForToken();
+} else {
+    showCatalog();
+}
+
 
 // small bug fix
 if (!JSON.parse(localStorage.getItem('myGames')))
