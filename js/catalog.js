@@ -12,7 +12,7 @@ let filterSearch = '';
 // currently displayed games array
 let currentData = [];
 
-const baseURL = `https://api.rawg.io/api/games?key=${sessionStorage.getItem('userToken')}`
+let baseURL = '';
 // const baseURL = '../samplegames.json';
 
 let currentPage = '';
@@ -547,6 +547,7 @@ function toggleUI() {
 function submitToken(e) {
     const tokenBar = document.getElementById('token-bar');
     sessionStorage.setItem('userToken', tokenBar.value);
+    baseURL = `https://api.rawg.io/api/games?key=${sessionStorage.getItem('userToken')}`;
     toggleUI();
     showCatalog();
 }
@@ -568,6 +569,7 @@ if (JSON.parse(sessionStorage.getItem('userToken') === null || JSON.parse(sessio
     toggleUI();
     askForToken();
 } else {
+    baseURL = `https://api.rawg.io/api/games?key=${sessionStorage.getItem('userToken')}`;
     showCatalog();
 }
 
