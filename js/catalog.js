@@ -4,7 +4,7 @@ const colLink = document.getElementById('collection-link');
 const catLink = document.getElementById('catalog-link');
 const logo = document.querySelector('.navbar-brand');
 
-const userToken = '';
+let userToken = '';
 
 let filterCategory = '';
 let filterSearch = '';
@@ -326,12 +326,12 @@ function showGamePage(e) {
         cardList.innerHTML = '';
 
         // fetches API for specific game id
-        // fetch(`https://api.rawg.io/api/games/${gameID}?key=${environment.myKey}`)
-        //     .then(res => res.json())
-        //     .then(data => loadGamePage(data));
-        fetch('./samplepage.json')
+        fetch(`https://api.rawg.io/api/games/${gameID}?key=${userToken}`)
             .then(res => res.json())
             .then(data => loadGamePage(data));
+        // fetch('./samplepage.json')
+        //     .then(res => res.json())
+        //     .then(data => loadGamePage(data));
 
         currentPage = 'gamepage';
     }
@@ -547,7 +547,8 @@ function toggleUI() {
 function submitToken(e) {
     const tokenBar = document.getElementById('token-bar');
     sessionStorage.setItem('userToken', tokenBar.value);
-    baseURL = `https://api.rawg.io/api/games?key=${sessionStorage.getItem('userToken')}`;
+    userToken = sessionStorage.getItem('userToken');
+    baseURL = `https://api.rawg.io/api/games?key=${userToken}`;
     toggleUI();
     showCatalog();
 }
@@ -569,7 +570,8 @@ if (JSON.parse(sessionStorage.getItem('userToken') === null || JSON.parse(sessio
     toggleUI();
     askForToken();
 } else {
-    baseURL = `https://api.rawg.io/api/games?key=${sessionStorage.getItem('userToken')}`;
+    userToken = sessionStorage.getItem('userToken');
+    baseURL = `https://api.rawg.io/api/games?key=${userToken}`;
     showCatalog();
 }
 
