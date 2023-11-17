@@ -380,11 +380,26 @@ function addRating(e) {
     updateGameRating();
 }
 
+function addNotes(e) {
+    let myData = JSON.parse(localStorage.getItem('myGames'));
+    let title = document.querySelector('.title').textContent;
+    let notesArea = document.getElementById('notes-area');
+
+    for (let i = 0; i < myData.length; i++)
+        if (myData[i]['name'] === title) {
+            myData[i]['notes'] = notesArea.value;
+            localStorage.setItem('myGames', JSON.stringify(myData));
+        }
+
+}
+
 function updateGameRating() {
     const category = document.querySelectorAll('.category button');
     const rating = document.querySelectorAll('.rating button');
     const myData = JSON.parse(localStorage.getItem('myGames'));
-    let title = document.querySelector('.title').textContent;
+    const title = document.querySelector('.title').textContent;
+
+    let notesArea = document.getElementById('notes-area');
     let currGame = '';
 
     for (let i = 0; i < myData.length; i++)
@@ -393,23 +408,27 @@ function updateGameRating() {
 
     category.forEach(btn => {
         if (btn.innerText.trim().toLowerCase() === currGame['category'])
-            btn.classList = 'btn btn-secondary';
+            btn.classList = 'btn btn-dark';
         else if (btn.innerText.trim() === 'Completed')
-            btn.classList = 'btn btn-outline-success';
+            btn.classList = 'btn btn-success';
         else if (btn.innerText.trim() === 'Playing')
-            btn.classList = 'btn btn-outline-warning';
+            btn.classList = 'btn btn-warning';
         else if (btn.innerText.trim() === 'Wishlisted')
-            btn.classList = 'btn btn-outline-primary';
+            btn.classList = 'btn btn-primary';
     });
 
     rating.forEach(btn => {
         if (btn.innerText.trim().toLowerCase() === currGame['userRated'])
-            btn.classList = 'btn btn-secondary';
+            btn.classList = 'btn btn-dark';
         else if (btn.innerText.trim() === 'Like')
-            btn.classList = 'btn btn-outline-success';
+            btn.classList = 'btn btn-success';
         else if (btn.innerText.trim() === 'Dislike')
-            btn.classList = 'btn btn-outline-danger';
+            btn.classList = 'btn btn-danger';
     });
+
+    if (currGame['notes'] != null) {
+        notesArea.value = currGame['notes'];
+    }
 }
 
 function loadGamePage(gameData) {
@@ -420,21 +439,25 @@ function loadGamePage(gameData) {
     let inCollection = isInCollection(gameData['id'], JSON.parse(localStorage.getItem('myGames')));
     if (inCollection) {
         ratingPart =
-            `<div class="btn-group category">
-                <button type="button" class="btn btn-outline-success">Completed</button>
-                <button type="button" class="btn btn-outline-warning">Playing</button>
-                <button type="button" class="btn btn-outline-primary">Wishlisted</button>
+            `<div class="btn-group category mt-3">
+                <button type="button" class="btn btn-success">Completed</button>
+                <button type="button" class="btn btn-warning">Playing</button>
+                <button type="button" class="btn btns-primary">Wishlisted</button>
             </div>
             <div class="btn-group rating mt-2">
-                <button type="button" class="btn btn-outline-success">Like <i class="bi bi-hand-thumbs-up"></i>
+                <button type="button" class="btn btn-success">Like <i class="bi bi-hand-thumbs-up"></i>
                 </button>
-                <button type="button" class="btn btn-outline-danger">Dislike <i class="bi bi-hand-thumbs-down"></i>
+                <button type="button" class="btn btn-danger">Dislike <i class="bi bi-hand-thumbs-down"></i>
                 </button>
-            </div>`;
+            </div>
+
+            <p class="fs-5 m-1 fw-bold mt-2">Notes:</p>
+            <textarea class="form-control" id="notes-area" rows="3"></textarea>
+            </button>`;
         inCollection = true;
     } else {
         ratingPart =
-            `<a class="fs-6 fw-bolder btn btn-outline-success border-2 p-0 ps-2 pe-2 addBtn">
+            `<a class="fs-6 fw-bolder btn btn-success border-2 p-0 ps-2 pe-2 addBtn mt-3">
                 Add to Collection
                 <i class="bi bi-plus-lg"></i>
             </a>`;
@@ -446,12 +469,11 @@ function loadGamePage(gameData) {
         <div class="col-12 col-md-5">
             <img class="img-thumbnail"
                 src="${gameData['background_image']}">
-            <div class="ratings row justify-content-around mt-2">
-                ${ratingPart}
+            <div class="ratings row justify-content-around p-3">
                 <p class="fs-5 mt-3 m-1"><span class="fw-bold">Developers:</span> ${gameData['developers'][0]['name']}</p>
                 <p class="fs-5 m-1"><span class="fw-bold">Metacritic:</span> ${gameData['metacritic']}</p>
                 <p class="fs-5 m-1"><span class="fw-bold">Platforms:</span> ${getPlatforms(gameData)}</p>
-
+                ${ratingPart}
             </div>
         </div>
         <div class="col-7 d-none d-md-block">
@@ -475,9 +497,11 @@ function loadGamePage(gameData) {
     if (inCollection) {
         const category = document.querySelector('.category');
         const rating = document.querySelector('.rating');
+        const notesArea = document.getElementById('notes-area');
 
         category.addEventListener('click', addCategory);
         rating.addEventListener('click', addRating);
+        notesArea.addEventListener('input', addNotes);
     } else {
         const addBtn = document.querySelector('.addBtn');
         addBtn.addEventListener('click', () => appendToLocal(gameData));

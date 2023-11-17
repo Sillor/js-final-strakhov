@@ -1,3 +1,7 @@
 .card-img-top {
     cursor: pointer;
 }
+
+#notes-area {
+    max-width: 95% !important;
+}
