@@ -566,6 +566,10 @@ function clearPage() {
         tokenContainer.remove();
 }
 
+// small bug fix
+if (!JSON.parse(localStorage.getItem('myGames')))
+    JSON.stringify(localStorage.setItem('myGames', '[]'));
+
 if (JSON.parse(sessionStorage.getItem('userToken') === null || JSON.parse(sessionStorage.getItem('userToken') === ''))) {
     toggleUI();
     askForToken();
@@ -574,11 +578,6 @@ if (JSON.parse(sessionStorage.getItem('userToken') === null || JSON.parse(sessio
     baseURL = `https://api.rawg.io/api/games?key=${userToken}`;
     showCatalog();
 }
-
-
-// small bug fix
-if (!JSON.parse(localStorage.getItem('myGames')))
-    JSON.stringify(localStorage.setItem('myGames', '[]'));
 
 const searchBtn = document.getElementById('search-button');
 
