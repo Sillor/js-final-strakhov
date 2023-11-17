@@ -4,6 +4,9 @@ const colLink = document.getElementById('collection-link');
 const catLink = document.getElementById('catalog-link');
 const logo = document.querySelector('.navbar-brand');
 
+let filterCategory = '';
+let filterSearch = '';
+
 // currently displayed games array
 let currentData = [];
 
@@ -90,7 +93,7 @@ function toggleSpinner() {
 }
 
 // sends request to the server based on the search value
-function searchGames() {
+function searchCatalog() {
     const searchBar = document.getElementById('search-bar');
     fetchGames(searchBar.value);
 }
@@ -139,7 +142,6 @@ function removeGame(e) {
     }
 }
 
-
 // checks for duplicates when adding the game to local storage
 function checkAddDuplicate(parsedGames, newGame) {
     let duplicate = false;
@@ -155,8 +157,10 @@ function addListItem(str) {
 
     a.classList = 'dropdown-item';
     a.href = '#';
+    a.id = str.toLowerCase();
     a.innerText = str;
     li.appendChild(a);
+    li.addEventListener('click', () => filterCollection(a.id, filterSearch));
 
     return li;
 }
@@ -177,16 +181,12 @@ function addSearch(type) {
     inputGroup.appendChild(searchBarNew);
 
     if (type === 'collection') {
-        const dropdown = document.createElement('div');
-        dropdown.classList = 'dropdown';
-        inputGroup.appendChild(dropdown);
-
         const dropdownBtn = document.createElement('button');
-        dropdownBtn.classList = 'input-group-text btn btn-outline-dark dropdown-toggle border-1 rounded-0 ps-3 pe-3';
+        dropdownBtn.classList = 'input-group-text btn btn-dark dropdown-toggle border-1 ps-3 pe-3';
         dropdownBtn.type = 'button';
         dropdownBtn.setAttribute('data-bs-toggle', 'dropdown');
         dropdownBtn.setAttribute('aria-expanded', 'false');
-        dropdown.appendChild(dropdownBtn);
+        inputGroup.appendChild(dropdownBtn);
 
         const dropdownIcon = document.createElement('i');
         dropdownIcon.classList = 'bi bi-filter';
@@ -195,24 +195,69 @@ function addSearch(type) {
 
         const dropdownMenu = document.createElement('ul');
         dropdownMenu.classList = 'dropdown-menu';
-        dropdown.appendChild(dropdownMenu);
+        dropdownBtn.appendChild(dropdownMenu);
         dropdownMenu.appendChild(addListItem('All'));
         dropdownMenu.appendChild(addListItem('Completed'));
         dropdownMenu.appendChild(addListItem('Playing'));
         dropdownMenu.appendChild(addListItem('Wishlisted'));
+
+        document.querySelector('main').insertBefore(searchContainer, document.getElementById('game-container'));
+
+        searchBarNew.addEventListener('input', searchCollection);
+    } else {
+        const searchBtnNew = document.createElement('button');
+        searchBtnNew.type = 'button';
+        searchBtnNew.classList = 'btn btn-dark input-group-text border-1 ps-3 pe-3';
+        searchBtnNew.id = 'search-button';
+        inputGroup.appendChild(searchBtnNew);
+
+        const searchIcon = document.createElement('i');
+        searchIcon.classList = 'bi bi-search';
+        searchBtnNew.appendChild(searchIcon);
+
+        document.querySelector('main').insertBefore(searchContainer, document.getElementById('game-container'));
+        searchBtnNew.addEventListener('click', searchCatalog);
+    }
+}
+
+function filterCollection(category, search) {
+    const myData = JSON.parse(localStorage.getItem('myGames'));
+    const dropdownBtn = document.querySelector('.dropdown-toggle');
+    filterCategory = category;
+
+    cardList.innerHTML = '';
+
+    if ((category === 'all' || category === '') && search === '') {
+        myData.forEach(game => {
+            addGameCard(game, 'collection');
+        });
+    } else if ((category != 'all' && category != '') && search === '') {
+        myData.forEach(game => {
+            if (game['category'] === category) {
+                addGameCard(game, 'collection');
+            }
+        });
+    } else if ((category === 'all' || category === '') && search != '') {
+        myData.forEach(game => {
+            if (game['name'].toLowerCase().includes(search.toLowerCase()))
+                addGameCard(game, 'collection');
+        });
+    } else if ((category != 'all' || category != '') && search != '') {
+        myData.forEach(game => {
+            if (game['name'].toLowerCase().includes(search.toLowerCase()) && game['category'] === category)
+                addGameCard(game, 'collection');
+        });
     }
 
-    const searchBtnNew = document.createElement('button');
-    searchBtnNew.type = 'button';
-    searchBtnNew.classList = 'btn btn-dark input-group-text border-1 ps-3 pe-3';
-    searchBtnNew.id = 'search-button';
-    inputGroup.appendChild(searchBtnNew);
+    if (category != '')
+        dropdownBtn.firstElementChild.nextSibling.textContent = ` ${category[0].toUpperCase() + category.slice(1)} `;
+}
 
-    const searchIcon = document.createElement('i');
-    searchIcon.classList = 'bi bi-search';
-    searchBtnNew.appendChild(searchIcon);
+function searchCollection(e) {
+    const searchBar = document.getElementById('search-bar');
+    filterSearch = searchBar.value;
 
-    document.querySelector('main').insertBefore(searchContainer, document.getElementById('game-container'));
+    filterCollection(filterCategory, filterSearch);
 }
 
 // transform the page to collection
@@ -357,7 +402,6 @@ function updateGameRating() {
             btn.classList = 'btn btn-outline-primary';
     });
 
-    console.log(currGame['userRated']);
     rating.forEach(btn => {
         if (btn.innerText.trim().toLowerCase() === currGame['userRated'])
             btn.classList = 'btn btn-secondary';
@@ -449,7 +493,6 @@ if (!JSON.parse(localStorage.getItem('myGames')))
 const searchBtn = document.getElementById('search-button');
 
 // Event-listeners
-// searchBtn.addEventListener('click', searchGames);
 cardList.addEventListener('click', addGame);
 cardList.addEventListener('click', removeGame);
 cardList.addEventListener('click', showGamePage);
